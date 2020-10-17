@@ -42,11 +42,11 @@ public class Character
         currentHP -= dmg;
         Debug.Log("Character: " + this.id + " received " + dmg + " amount of dmg");
         if (currentHP > 0)
-            PlayerController.uIController.ChangeTextOnIndex(id, "HP: " + currentHP + "/" + HP);
+            PlayerTeamController.uIController.ChangeTextOnIndex(id, "HP: " + currentHP + "/" + HP);
         else
         {
-            PlayerController.uIController.ChangeTextOnIndex(id, "DEAD");
-            PlayerController.uIController.SetDeadOnIndex(id);
+            PlayerTeamController.uIController.ChangeTextOnIndex(id, "DEAD");
+            PlayerTeamController.uIController.SetDeadOnIndex(id);
         }
     }   
 }
