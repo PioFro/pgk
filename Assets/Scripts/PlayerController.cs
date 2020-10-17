@@ -1,45 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static PlayerUIController playerUIController;
 
-    public List<Character> team = new List<Character>();
+    public List<CharacterController> team = new List<CharacterController>();
     public int teamSize = 4;
-    public static PlayerUIController uIController;
     public GameObject floorPrefab;
 
     private void CreateTeam()
     {
-        for(int i=0;i<teamSize;i++)
+        for (int i = 0; i < teamSize; i++)
         {
-            team.Add(new Character(i));
-            uIController.SetImageOnIndex(i, team[i]._property.avatar);
-            uIController.SetImageOnIndexActive(i, true);
+            team.Add(new CharacterController(i));
+            playerUIController.SetImageOnIndex(i, team[i].Property.avatar);
+            playerUIController.SetImageOnIndexActive(i, true);
         }
 
     }
+
     void Start()
     {
-        uIController = GetComponentInChildren<PlayerUIController>();
-        Debug.Log(uIController.ToString());
+        playerUIController = GetComponentInChildren<PlayerUIController>();
+        Debug.Log(playerUIController.ToString());
         CreateTeam();
-        
+
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Finish")
+        if (collision.gameObject.CompareTag("Finish"))
         {
             Debug.Log("exit");
             Destroy(collision.gameObject.GetComponent<BoxCollider2D>());
 
-            floorPrefab.GetComponent<FloorController>().transform.position = calculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(),collision.gameObject.transform.position);
+            floorPrefab.GetComponent<FloorController>().transform.position = calculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(), collision.gameObject.transform.position);
             Instantiate(floorPrefab);
 
-        }    
+        }
+        else if (gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy trigger enter");
+            //SceneManager.SetActiveScene(SceneManager.GetSceneByName("FightScene"));
+        }
     }
+
     private Vector2 calculateFloorStart(ExitProperties exitProperties, Vector2 position)
     {
         FloorController tmp = floorPrefab.GetComponent<FloorController>();
@@ -49,8 +55,8 @@ public class PlayerController : MonoBehaviour
 
         if (exitProperties.direction == ExitProperties.Dir.LEFT)
         {
-            floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX,_incrementY*2);
-            return position- new Vector2(tmp.sizeX * _incrementX, _incrementY);
+            floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX, _incrementY * 2);
+            return position - new Vector2(tmp.sizeX * _incrementX, _incrementY);
         }
         if (exitProperties.direction == ExitProperties.Dir.RIGHT)
         {
@@ -59,13 +65,13 @@ public class PlayerController : MonoBehaviour
         }
         if (exitProperties.direction == ExitProperties.Dir.UP)
         {
-            floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX*2, _incrementY);
+            floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX * 2, _incrementY);
             return position + new Vector2(_incrementX, 0);
         }
         if (exitProperties.direction == ExitProperties.Dir.DOWN)
         {
-            floorPrefab.GetComponent<FloorController>()._entry = position + new Vector2(_incrementX*2, _incrementY);
-            return position - new Vector2(_incrementX, _incrementY*tmp.sizeY);
+            floorPrefab.GetComponent<FloorController>()._entry = position + new Vector2(_incrementX * 2, _incrementY);
+            return position - new Vector2(_incrementX, _incrementY * tmp.sizeY);
         }
         return new Vector2(0, 0);
     }
