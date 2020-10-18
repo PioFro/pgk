@@ -17,6 +17,10 @@ public class CharacterStats
 
     public int CurrentHitPoints;
 
+    public int Initiative;
+
+    public int CurrentInitiative;
+
     [Header("Character Attributes")]
     public List<CharacterAttributes> Attributes = new List<CharacterAttributes>();
 

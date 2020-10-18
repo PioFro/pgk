@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aaf7c96a1dc07b4591fcee98c388535, type: 3}
   m_Name: Strength
   m_EditorClassIdentifier: 
-  Description: Increases damage that character can deal.
+  Description: Increases damage deal to enemy.
   Icon: {fileID: 0}

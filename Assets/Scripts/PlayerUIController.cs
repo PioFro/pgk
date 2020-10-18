@@ -1,38 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerUIController : MonoBehaviour
 {
-    public GameObject[] avatarObjects = new GameObject[4];
+    public Sprite CharacterDeadAvatar;
 
-    public void SetImageOnIndex(int id, Sprite img)
+    public CharacterAvatarTeamSlot[] CharacterAvatarTeamSlots = new CharacterAvatarTeamSlot[4];
+    public CharacterAvatarQueueSlot[] CharacterAvatarQueueSlots = new CharacterAvatarQueueSlot[8];
+
+    public void SetImageOnIndex(int index, Sprite img)
     {
-        if (id < 0 || id > 3)
+        if (CharacterAvatarTeamIndexOutOfRange(index))
             return;
 
-        avatarObjects[id].GetComponent<Image>().sprite = img; 
-    }
-    public void SetImageOnIndexActive(int id, bool active)
-    {
-        if (id < 0 || id > 3)
-            return;
-
-        avatarObjects[id].GetComponent<Image>().gameObject.SetActive(active);
-    }
-    public void ChangeTextOnIndex(int id, string newText)
-    {
-        if (id < 0 || id > 3)
-            return;
-        avatarObjects[id].GetComponentInChildren<Text>().text = newText;
-    }
-    public void SetDeadOnIndex(int id)
-    {
-        if (id < 0 || id > 3)
-            return;
-
-        avatarObjects[id].GetComponent<Image>().sprite = Properties.deadStaticSprite;
+        CharacterAvatarTeamSlots[index].SetAvatar(img); 
     }
 
+    //public void SetImageOnIndexActive(int index, bool active)
+    //{
+    //    if (CharacterAvatarTeamIndexOutOfRange(index))
+    //        return;
+
+    //    CharacterAvatarTeamSlots[index].GetComponent<Image>().gameObject.SetActive(active);
+    //}
+
+    public void ChangeTextOnIndex(int index, string newText)
+    {
+        if (CharacterAvatarTeamIndexOutOfRange(index))
+            return;
+        CharacterAvatarTeamSlots[index].GetComponentInChildren<Text>().text = newText;
+    }
+
+    public void SetDeadOnIndex(int index)
+    {
+        if (CharacterAvatarTeamIndexOutOfRange(index))
+            return;
+
+        CharacterAvatarTeamSlots[index].GetComponent<Image>().sprite = Properties.deadStaticSprite;
+    }
+
+    private bool CharacterAvatarTeamIndexOutOfRange(int index)
+    {
+        return index < 0 || index >= CharacterAvatarTeamSlots.Length; 
+    }
 }

@@ -8,5 +8,9 @@ namespace ScriptableObjects
         public Sprite Avatar;
 
         public CharacterStats Stats;
+
+        public delegate void CharacterKilledDelegate();
+
+        public CharacterKilledDelegate CharacterKilled;
     }
 }

@@ -11,12 +11,12 @@ public class PlayerController : MonoBehaviour
 
     private void CreateTeam()
     {
-        for (int i = 0; i < teamSize; i++)
-        {
-            team.Add(new CharacterController(i));
-            playerUIController.SetImageOnIndex(i, team[i].Property.avatar);
-            playerUIController.SetImageOnIndexActive(i, true);
-        }
+        //for (int i = 0; i < teamSize; i++)
+        //{
+        //    team.Add(new CharacterController(i));
+        //    playerUIController.SetImageOnIndex(i, team[i].Property.avatar);
+        //    playerUIController.SetImageOnIndexActive(i, true);
+        //}
 
     }
 

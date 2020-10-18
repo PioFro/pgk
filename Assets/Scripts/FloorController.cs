@@ -32,8 +32,20 @@ public class FloorController : MonoBehaviour
     private float _incrementX = 0;
     private float _incrementY = 0;
 
+    public bool randomExits = false;
+    public bool startFloor = false;
+
+    public bool _leftExit = true;
+    public bool _rightExit = true;
+    public bool _upExit = true;
+    public bool _downExit=true;
+
     void Start()
     {
+        if(startFloor)
+        {
+            this.setExits(true, true, true, true);
+        }
 
         if (numberOfExits > sizeX || numberOfExits > sizeY || numberOfExits<2)
             numberOfExits = 2;
@@ -57,12 +69,46 @@ public class FloorController : MonoBehaviour
                 }
             }
         }
-
-        for(int i = 0; i<numberOfExits;i++)
+        if(randomExits)
+            for(int i = 0; i<numberOfExits;i++)
+            {
+                Vector2 vec = _possiblePositionsWall[Random.Range(0, _possiblePositionsWall.Count - 1)];
+                _possiblePositionsWall.Remove(vec);
+                _exits.Add(vec);
+            }
+        else
         {
-            Vector2 vec = _possiblePositionsWall[Random.Range(0, _possiblePositionsWall.Count - 1)];
-            _possiblePositionsWall.Remove(vec);
-            _exits.Add(vec);
+            int index = (int)(sizeY / 2);
+            Vector2 vec = _possiblePositionsWall[index];
+            //Middle left
+            if (_leftExit)
+            {
+                _possiblePositionsWall.Remove(vec);
+                _exits.Add(vec);
+            }
+            //Middle up and down
+            if (_upExit && _downExit)
+            {
+                index = sizeY + (int)(sizeX / 2);
+                vec = _possiblePositionsWall[index];
+                _possiblePositionsWall.Remove(vec);
+                _exits.Add(vec);
+                while (vec.y == _possiblePositionsWall[index].y)
+                {
+                    index += 1;
+                }
+                vec = _possiblePositionsWall[index];
+                _possiblePositionsWall.Remove(vec);
+                _exits.Add(vec);
+            }
+            //Middle right
+            if (_rightExit)
+            {
+                index = _possiblePositionsWall.Count - (int)(sizeY / 2);
+                vec = _possiblePositionsWall[index];
+                _possiblePositionsWall.Remove(vec);
+                _exits.Add(vec);
+            }
         }
 
         foreach(Vector2 vec in _exits)
@@ -81,7 +127,8 @@ public class FloorController : MonoBehaviour
 
         foreach(Vector2 vec in _possiblePositionsWall)
         {
-            if (!vec.Equals(_entry))
+            //Debug.Log("Distance between entry and wall: " + Vector2.Distance(vec, _entry));
+            if (Vector2.Distance(vec, _entry)>1)
                 Instantiate(walltile,vec,Quaternion.identity);
         }
         foreach(Vector2 vec in _possiblePositionsTile)
@@ -89,8 +136,15 @@ public class FloorController : MonoBehaviour
             Instantiate(floortile, vec, Quaternion.identity);
             Instantiate(fogTile, new Vector3(vec.x, vec.y, -2), Quaternion.identity);
         }
-        if (!_entry.Equals(new Vector2(0, 0)))
+        if (!startFloor)
             Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity);
+    }
+    public void setExits(bool up, bool down, bool right, bool left)
+    {
+        _leftExit = left;
+        _rightExit = right;
+        _upExit = up;
+        _downExit = down;
     }
 
     // Update is called once per frame

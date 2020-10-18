@@ -21,11 +21,11 @@ MonoBehaviour:
     HitPoints: 0
     CurrentHitPoints: 0
     Attributes:
-    - attribute: {fileID: 11400000, guid: 7fdf9bc3b481b9444ba60bf5eca3b267, type: 2}
-      value: 0
-    - attribute: {fileID: 11400000, guid: fa20290007b4cf441bcd94ad4c1c5470, type: 2}
-      value: 0
-    - attribute: {fileID: 11400000, guid: 252206693f20b3c4d8ff3e27cf78b50a, type: 2}
-      value: 0
+    - Attribute: {fileID: 11400000, guid: 7fdf9bc3b481b9444ba60bf5eca3b267, type: 2}
+      Value: 0
+    - Attribute: {fileID: 11400000, guid: fa20290007b4cf441bcd94ad4c1c5470, type: 2}
+      Value: 0
+    - Attribute: {fileID: 11400000, guid: 252206693f20b3c4d8ff3e27cf78b50a, type: 2}
+      Value: 0
     Skills:
-    - skill: {fileID: 11400000, guid: 4e27bcd6ee3faba46ac8db921e281135, type: 2}
+    - Skill: {fileID: 11400000, guid: 4e27bcd6ee3faba46ac8db921e281135, type: 2}

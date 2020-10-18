@@ -3,12 +3,13 @@
 [System.Serializable]
 public class CharacterAttributes
 {
-    public Attribute attribute;
-    public int value;
+    public Attribute Attribute;
+
+    public int Value;
 
     public CharacterAttributes(Attribute attribute, int value)
     {
-        this.attribute = attribute;
-        this.value = value;
+        Attribute = attribute;
+        Value = value;
     }
 }
