@@ -1,5 +1,4 @@
 ﻿using ScriptableObjects;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerTeamController : MonoBehaviour
@@ -8,23 +7,44 @@ public class PlayerTeamController : MonoBehaviour
 
     private const int MaxTeamSize = 4;
 
-    public PlayerUIController playerUIController;
+    public PlayerUIController PlayerUIController;
+
+    public CharacterSpawner CharacterSpawner;
 
     void Start()
     {
-        playerUIController = GetComponentInChildren<PlayerUIController>();
-        //CreateTeam();
+        CreateTeam();
     }
 
-    //private void CreateTeam()
-    //{
-    //    for (int i = 0; i < TeamSize; i++)
-    //    {
-    //        Team.Add(new Character());
-    //        uIController.SetImageOnIndex(i, Team[i].Avatar);
-    //        uIController.SetImageOnIndexActive(i, true);
-    //    }
+    private void Update()
+    {
+        //foreach (var character in Team)
+        //    while (character.Stats.CurrentHitPoints > 0)
+        //        character.OnHitPointsChanged(-1);
+    }
 
-    //}
+    public void AssignCharacterToNextFreeSlot(Character character)
+    {
+        for (int i = 0; i < MaxTeamSize; i++)
+        {
+            if (Team[i] == null)
+            {
+                Team[i] = character;
 
+                return;
+            }
+        }
+    }
+
+    private void CreateTeam()
+    {
+        for (int i = 0; i < MaxTeamSize; i++)
+        {
+            var character = CharacterSpawner.SpawnCharacter();
+
+            Team[i] = character;
+
+            PlayerUIController.AssignCharacterToTeamSlot(character, i);
+        }
+    }
 }

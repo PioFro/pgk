@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6531cc4c8adac7243abf636b30e4ff0e, type: 3}
-  m_Name: Avatar2
+  m_Name: Character2
   m_EditorClassIdentifier: 
   Avatar: {fileID: 21300000, guid: c76a6f03bdd722c41bc5642241f90e4e, type: 3}
   Stats:
@@ -20,6 +20,8 @@ MonoBehaviour:
     ExperiencePoints: 0
     HitPoints: 0
     CurrentHitPoints: 0
+    Initiative: 0
+    CurrentInitiative: 0
     Attributes:
     - Attribute: {fileID: 11400000, guid: 7fdf9bc3b481b9444ba60bf5eca3b267, type: 2}
       Value: 0

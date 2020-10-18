@@ -32,12 +32,8 @@ public class CharacterSpawner : MonoBehaviour
     {
         character.Stats.Id = 100 + SpawnedCharacters.Count;
         character.Stats.CurrentHitPoints = character.Stats.HitPoints = Random.Range(10, 21);
+        character.Stats.CurrentInitiative = character.Stats.Initiative = Random.Range(5, 13);
         character.Stats.Attributes.ForEach(x => x.Value = Random.Range(1, 11));
-    }
-
-    private void InstatiateCharacterAttributes(Character character)
-    {
-
     }
 
     private void LogSpawnInfo(Character character)
@@ -46,6 +42,7 @@ public class CharacterSpawner : MonoBehaviour
             Id = {character.Stats.Id},
             Name = {character.Stats.CharacterName},
             Max HP = {character.Stats.HitPoints},
+            Initiative = {character.Stats.Initiative},
             STR = {character.Stats.Attributes.GetAttributeValue("Strength")},
             DEX = { character.Stats.Attributes.GetAttributeValue("Dexterity")},
             INT = {character.Stats.Attributes.GetAttributeValue("Intelligence")}
@@ -54,10 +51,10 @@ public class CharacterSpawner : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnCharacter();
-        }
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    SpawnCharacter();
+        //}
 
 
         // TODO: Read info about saved characters from serialized data file.

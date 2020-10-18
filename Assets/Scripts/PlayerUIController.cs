@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScriptableObjects;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerUIController : MonoBehaviour
@@ -7,6 +8,11 @@ public class PlayerUIController : MonoBehaviour
 
     public CharacterAvatarTeamSlot[] CharacterAvatarTeamSlots = new CharacterAvatarTeamSlot[4];
     public CharacterAvatarQueueSlot[] CharacterAvatarQueueSlots = new CharacterAvatarQueueSlot[8];
+
+    public void AssignCharacterToTeamSlot(Character character, int slotIndex)
+    {
+        CharacterAvatarTeamSlots[slotIndex].AssignCharacter(character);
+    }
 
     public void SetImageOnIndex(int index, Sprite img)
     {

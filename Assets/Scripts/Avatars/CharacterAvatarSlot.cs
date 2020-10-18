@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public abstract class CharacterAvatarSlot : MonoBehaviour
 {
-    protected Image Image;
+    public Image Image;
 
     protected Character Character;
 
@@ -13,7 +13,7 @@ public abstract class CharacterAvatarSlot : MonoBehaviour
         Image = GetComponent<Image>();
     }
 
-    protected virtual void AssignCharacter(Character character)
+    public virtual void AssignCharacter(Character character)
     {
         this.Character = character;
 
