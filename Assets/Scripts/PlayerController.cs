@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         PlayerTeamController = GetComponent<PlayerTeamController>();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,6 +40,21 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Enemy trigger enter");
             //SceneManager.SetActiveScene(SceneManager.GetSceneByName("FightScene"));
+        }
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "DungeonScene":
+                GetComponent<Move>().enabled = true;
+                break;
+            case "CityScene":
+                GetComponent<Move>().enabled = false;
+                break;
+            default:
+                break;
         }
     }
 

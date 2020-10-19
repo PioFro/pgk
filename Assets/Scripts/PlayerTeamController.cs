@@ -13,7 +13,7 @@ public class PlayerTeamController : MonoBehaviour
 
     void Start()
     {
-        CreateTeam();
+        //CreateTeam();
     }
 
     private void Update()
@@ -25,13 +25,36 @@ public class PlayerTeamController : MonoBehaviour
 
     public void AssignCharacterToNextFreeSlot(Character character)
     {
-        for (int i = 0; i < MaxTeamSize; i++)
+        if (character != null)
         {
-            if (Team[i] == null)
+            for (int i = 0; i < MaxTeamSize; i++)
             {
-                Team[i] = character;
+                if (Team[i] == null)
+                {
+                    Team[i] = character;
 
-                return;
+                    PlayerUIController.AssignCharacterToTeamSlot(character, i);
+
+                    return;
+                }
+            }
+        }
+    }
+
+    public void UnassignCharacter(Character character)
+    {
+        if (character != null)
+        {
+            for (int i = 0; i < MaxTeamSize; i++)
+            {
+                if (Team[i] == character)
+                {
+                    Team[i] = null;
+
+                    PlayerUIController.AssignCharacterToTeamSlot(character, i);
+
+                    return;
+                }
             }
         }
     }
