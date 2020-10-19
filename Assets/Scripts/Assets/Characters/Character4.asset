@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6531cc4c8adac7243abf636b30e4ff0e, type: 3}
   m_Name: Character4
   m_EditorClassIdentifier: 
-  Avatar: {fileID: 21300000, guid: 914fadb88cfb66043bcbac8786d5796d, type: 3}
+  Avatar: {fileID: 21300000, guid: ef7f37e45b14b6e49a9a12aad93fbeab, type: 3}
   Stats:
     Id: 4
     CharacterName: Zero

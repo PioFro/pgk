@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6531cc4c8adac7243abf636b30e4ff0e, type: 3}
   m_Name: Character5
   m_EditorClassIdentifier: 
-  Avatar: {fileID: 21300000, guid: b61e65c25d6b4de43b6528ba0c56ea61, type: 3}
+  Avatar: {fileID: 21300000, guid: 9fc9960ccf2f7304fa1540ae113c2054, type: 3}
   Stats:
     Id: 5
     CharacterName: Rage

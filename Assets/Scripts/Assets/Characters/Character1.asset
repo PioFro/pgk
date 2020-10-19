@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6531cc4c8adac7243abf636b30e4ff0e, type: 3}
   m_Name: Character1
   m_EditorClassIdentifier: 
-  Avatar: {fileID: 21300000, guid: e90099816ce04684bb20ea62cdea1ce9, type: 3}
+  Avatar: {fileID: 21300000, guid: 9cb023dead1ddc147ad78d769d9c042b, type: 3}
   Stats:
     Id: 1
     CharacterName: Clair

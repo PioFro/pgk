@@ -16,6 +16,10 @@ public class PlayerUIController : MonoBehaviour
     public CharacterAvatarTeamSlot[] CharacterAvatarTeamSlots = new CharacterAvatarTeamSlot[4];
     public CharacterAvatarQueueSlot[] CharacterAvatarQueueSlots = new CharacterAvatarQueueSlot[8];
 
+    public void Awake()
+    {
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -68,14 +72,6 @@ public class PlayerUIController : MonoBehaviour
 
         CharacterAvatarTeamSlots[index].SetAvatar(img); 
     }
-
-    //public void SetImageOnIndexActive(int index, bool active)
-    //{
-    //    if (CharacterAvatarTeamIndexOutOfRange(index))
-    //        return;
-
-    //    CharacterAvatarTeamSlots[index].GetComponent<Image>().gameObject.SetActive(active);
-    //}
 
     public void ChangeTextOnIndex(int index, string newText)
     {

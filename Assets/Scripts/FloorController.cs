@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class FloorController : MonoBehaviour
@@ -15,10 +14,7 @@ public class FloorController : MonoBehaviour
     List<Vector2> _possiblePositionsTile = new List<Vector2>();
     List<Vector2> _possiblePositionsWall = new List<Vector2>();
     List<Vector2> _exits = new List<Vector2>();
-    public Vector2 _entry = new Vector2(0,0);
-
-
-    public GameObject player;
+    public Vector2 _entry = new Vector2(0, 0);
 
     public int sizeX = 20;
     public int sizeY = 20;
@@ -38,30 +34,30 @@ public class FloorController : MonoBehaviour
     public bool _leftExit = true;
     public bool _rightExit = true;
     public bool _upExit = true;
-    public bool _downExit=true;
+    public bool _downExit = true;
 
     void Start()
     {
-        if(startFloor)
+        if (startFloor)
         {
             this.setExits(true, true, true, true);
         }
 
-        if (numberOfExits > sizeX || numberOfExits > sizeY || numberOfExits<2)
+        if (numberOfExits > sizeX || numberOfExits > sizeY || numberOfExits < 2)
             numberOfExits = 2;
 
         _floorSprite = floortile.GetComponent<SpriteRenderer>();
         _incrementX = _floorSprite.bounds.size.x;
         _incrementY = _floorSprite.bounds.size.y;
         Debug.Log("x, y" + _incrementX + " , " + _incrementY);
-        for(int x=0;x<sizeX;x++)
+        for (int x = 0; x < sizeX; x++)
         {
-            for(int y=0; y<sizeY;y++)
+            for (int y = 0; y < sizeY; y++)
             {
-                
-                if(y == 0 || x == 0 || y==sizeY-1 || x==sizeX-1)
+
+                if (y == 0 || x == 0 || y == sizeY - 1 || x == sizeX - 1)
                 {
-                    _possiblePositionsWall.Add((new Vector2(x * _incrementX+transform.position.x, y * _incrementY+transform.position.y)));
+                    _possiblePositionsWall.Add((new Vector2(x * _incrementX + transform.position.x, y * _incrementY + transform.position.y)));
                 }
                 else
                 {
@@ -69,8 +65,8 @@ public class FloorController : MonoBehaviour
                 }
             }
         }
-        if(randomExits)
-            for(int i = 0; i<numberOfExits;i++)
+        if (randomExits)
+            for (int i = 0; i < numberOfExits; i++)
             {
                 Vector2 vec = _possiblePositionsWall[Random.Range(0, _possiblePositionsWall.Count - 1)];
                 _possiblePositionsWall.Remove(vec);
@@ -111,11 +107,11 @@ public class FloorController : MonoBehaviour
             }
         }
 
-        foreach(Vector2 vec in _exits)
+        foreach (Vector2 vec in _exits)
         {
             if (vec.x == transform.position.x)
                 exitTile.GetComponent<ExitProperties>().direction = ExitProperties.Dir.LEFT;
-            if(vec.x == (sizeX-1) * _incrementX + transform.position.x)
+            if (vec.x == (sizeX - 1) * _incrementX + transform.position.x)
                 exitTile.GetComponent<ExitProperties>().direction = ExitProperties.Dir.RIGHT;
             if (vec.y == transform.position.y)
                 exitTile.GetComponent<ExitProperties>().direction = ExitProperties.Dir.DOWN;
@@ -125,19 +121,25 @@ public class FloorController : MonoBehaviour
             Instantiate(exitTile, vec, Quaternion.identity);
         }
 
-        foreach(Vector2 vec in _possiblePositionsWall)
+        foreach (Vector2 vec in _possiblePositionsWall)
         {
             //Debug.Log("Distance between entry and wall: " + Vector2.Distance(vec, _entry));
-            if (Vector2.Distance(vec, _entry)>1)
-                Instantiate(walltile,vec,Quaternion.identity);
+            if (Vector2.Distance(vec, _entry) > 1)
+                Instantiate(walltile, vec, Quaternion.identity);
         }
-        foreach(Vector2 vec in _possiblePositionsTile)
+        foreach (Vector2 vec in _possiblePositionsTile)
         {
             Instantiate(floortile, vec, Quaternion.identity);
             Instantiate(fogTile, new Vector3(vec.x, vec.y, -2), Quaternion.identity);
         }
         if (!startFloor)
-            Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity);
+            if (_leftExit == false || _rightExit == false)
+                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.Euler(0, 0, 90));
+            else
+                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity);
+
+
+        PlayerFloorController.encounterControllerStatic.AddEncounter(GetRandomTile());
     }
     public void setExits(bool up, bool down, bool right, bool left)
     {
@@ -146,10 +148,8 @@ public class FloorController : MonoBehaviour
         _upExit = up;
         _downExit = down;
     }
-
-    // Update is called once per frame
-    void Update()
+    public Vector2 GetRandomTile()
     {
-        
+        return _possiblePositionsTile[Random.Range(0, _possiblePositionsTile.Count - 1)];
     }
 }

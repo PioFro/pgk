@@ -187,6 +187,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1839263709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839263710}
+  - component: {fileID: 1839263711}
+  m_Layer: 0
+  m_Name: EncounterController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1839263710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839263709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1839263711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839263709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad15d67b4c8f1947b023baffc32098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EncounterPrefab: {fileID: 356075841823394706, guid: 678bd292deb25114bafb3716cfd2fcd1,
+    type: 3}
+  Encounters:
+  - {fileID: 11400000, guid: 852c8e9e0792c31489b9a4ceb5006ed8, type: 2}
 --- !u!1001 &5578594523020160811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,6 +251,41 @@ PrefabInstance:
       propertyPath: startFloor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: floortile
+      value: 
+      objectReference: {fileID: 3454402447236806263, guid: 3d93cd28b8b0a0b4db29b56f34a2b31b,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: fogTile
+      value: 
+      objectReference: {fileID: 5771236826301558735, guid: a116fcec39c5e6745b05feb3358c6136,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: walltile
+      value: 
+      objectReference: {fileID: 614578368159572804, guid: b9d2750b7e34f2f48af408c84b317cda,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: exitTile
+      value: 
+      objectReference: {fileID: 1753863294651382990, guid: 176b713cb68196c4b8d3310fdbd61fd7,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: entryTile
+      value: 
+      objectReference: {fileID: 5214250371795931554, guid: 969e08144a957974e97617cd26c61666,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: encounterController
+      value: 
+      objectReference: {fileID: 1839263711}
     - target: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
         type: 3}
       propertyPath: m_Name

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5578594521077368233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: -15, z: 0}
+  m_LocalPosition: {x: 66, y: 27.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,15 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a182ce560165d47820ae8df8fbb050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floortile: {fileID: 3454402447236806263, guid: 0f1f4b10d518e764e829cfde508bdbe5,
+  floortile: {fileID: 3454402447236806263, guid: 3d93cd28b8b0a0b4db29b56f34a2b31b,
     type: 3}
-  fogTile: {fileID: 5771236826301558735, guid: ac1394d4e15fe3e4fa8343367937677e, type: 3}
-  walltile: {fileID: 614578368159572804, guid: c54c2f22f70c2d145962e4c58b57838b, type: 3}
-  exitTile: {fileID: 1753863294651382990, guid: 041fd504f5b81214080f0b93df08e5df,
+  fogTile: {fileID: 5771236826301558735, guid: a116fcec39c5e6745b05feb3358c6136, type: 3}
+  walltile: {fileID: 614578368159572804, guid: b9d2750b7e34f2f48af408c84b317cda, type: 3}
+  exitTile: {fileID: 1753863294651382990, guid: 176b713cb68196c4b8d3310fdbd61fd7,
     type: 3}
-  entryTile: {fileID: 5214250371795931554, guid: 884679c4df5cfb8418b2260d4f699d40,
+  entryTile: {fileID: 5214250371795931554, guid: 969e08144a957974e97617cd26c61666,
     type: 3}
-  _entry: {x: 18, y: 3}
+  _entry: {x: 66, y: 30.1}
   player: {fileID: 0}
   sizeX: 10
   sizeY: 5

@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6531cc4c8adac7243abf636b30e4ff0e, type: 3}
-  m_Name: Character2
+  m_Name: EnemyWeak
   m_EditorClassIdentifier: 
-  Avatar: {fileID: 21300000, guid: 2195e0eb993119c48b2df3d968c38fdd, type: 3}
+  Avatar: {fileID: 21300000, guid: 7880821ae0e694ff185fd812fdbe7efd, type: 3}
   Stats:
-    Id: 2
-    CharacterName: Miguel
-    Level: 1
+    Id: 0
+    CharacterName: Weak Turret 1
+    Level: 0
     ExperiencePoints: 0
     HitPoints: 0
     CurrentHitPoints: 0
     Initiative: 0
     CurrentInitiative: 0
     Attributes:
-    - Attribute: {fileID: 11400000, guid: 7fdf9bc3b481b9444ba60bf5eca3b267, type: 2}
-      Value: 0
     - Attribute: {fileID: 11400000, guid: fa20290007b4cf441bcd94ad4c1c5470, type: 2}
-      Value: 0
+      Value: 1
     - Attribute: {fileID: 11400000, guid: 252206693f20b3c4d8ff3e27cf78b50a, type: 2}
-      Value: 0
+      Value: 1
+    - Attribute: {fileID: 11400000, guid: 7fdf9bc3b481b9444ba60bf5eca3b267, type: 2}
+      Value: 1
     Skills:
     - Skill: {fileID: 11400000, guid: 4e27bcd6ee3faba46ac8db921e281135, type: 2}
