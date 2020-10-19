@@ -282,12 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cbb6c7272919b4384210c78744fcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1080671017 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 5578594523020160811}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1134816816
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,9 +294,10 @@ GameObject:
   - component: {fileID: 1134816820}
   - component: {fileID: 1134816818}
   - component: {fileID: 1134816817}
-  - component: {fileID: 1134816822}
   - component: {fileID: 1134816823}
   - component: {fileID: 1134816819}
+  - component: {fileID: 1134816822}
+  - component: {fileID: 1134816824}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -435,11 +430,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1134816816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dffb97f97603cd49bcced2095d06cd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 00ab3327c4fa9fd4c9b5854776d4c212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerUIController: {fileID: 4820809052600168748}
-  FloorPrefab: {fileID: 1080671017}
+  FloorPrefab: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
+    type: 3}
 --- !u!114 &1134816823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,6 +454,20 @@ MonoBehaviour:
   - {fileID: 0}
   PlayerUIController: {fileID: 4820809052600168748}
   CharacterSpawner: {fileID: 758278310}
+--- !u!114 &1134816824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134816816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294009d52d90b4e4facab792b0f0a782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPrefab: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
+    type: 3}
 --- !u!1 &1690475481
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +706,7 @@ PrefabInstance:
     - target: {fileID: 3131844438475819446, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
       propertyPath: m_Name
-      value: AvatarSlot1
+      value: Slot1
       objectReference: {fileID: 0}
     - target: {fileID: 3209715636528291726, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
@@ -829,6 +838,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4820809053404725453, guid: d92cb9f733644f2409ea4b366b0f96ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4825054544109671669, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
       propertyPath: m_Sprite
@@ -857,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 5490012699546733882, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
       propertyPath: m_Name
-      value: AvatarSlot4
+      value: Slot4
       objectReference: {fileID: 0}
     - target: {fileID: 5490012699930984616, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
@@ -867,12 +881,12 @@ PrefabInstance:
     - target: {fileID: 5490012699930984616, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
       propertyPath: m_Name
-      value: AvatarSlot2
+      value: Slot2
       objectReference: {fileID: 0}
     - target: {fileID: 5490012701251726467, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
       propertyPath: m_Name
-      value: AvatarSlot3
+      value: Slot3
       objectReference: {fileID: 0}
     - target: {fileID: 5660165466695838176, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
@@ -1229,6 +1243,36 @@ PrefabInstance:
       propertyPath: startFloor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: floortile
+      value: 
+      objectReference: {fileID: 3454402447236806263, guid: 3d93cd28b8b0a0b4db29b56f34a2b31b,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: fogTile
+      value: 
+      objectReference: {fileID: 5771236826301558735, guid: a116fcec39c5e6745b05feb3358c6136,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: walltile
+      value: 
+      objectReference: {fileID: 614578368159572804, guid: b9d2750b7e34f2f48af408c84b317cda,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: exitTile
+      value: 
+      objectReference: {fileID: 1753863294651382990, guid: 176b713cb68196c4b8d3310fdbd61fd7,
+        type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: entryTile
+      value: 
+      objectReference: {fileID: 5214250371795931554, guid: 969e08144a957974e97617cd26c61666,
+        type: 3}
     - target: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
         type: 3}
       propertyPath: m_Name

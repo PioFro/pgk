@@ -9,6 +9,19 @@ public class PlayerUIController : MonoBehaviour
     public CharacterAvatarTeamSlot[] CharacterAvatarTeamSlots = new CharacterAvatarTeamSlot[4];
     public CharacterAvatarQueueSlot[] CharacterAvatarQueueSlots = new CharacterAvatarQueueSlot[8];
 
+    public void Awake()
+    {
+        GameObject avatars = transform.Find("TeamAvatars").gameObject;
+        GameObject queue = transform.Find("QueueAvatars").gameObject;
+        for (int i = 0; i < CharacterAvatarTeamSlots.Length;i++)
+        {
+            CharacterAvatarTeamSlots[i] = avatars.transform.Find("Slot" + (1 + i)).GetComponent<CharacterAvatarTeamSlot>();
+        }
+        for (int i = 0; i < CharacterAvatarQueueSlots.Length; i++)
+        {
+            CharacterAvatarQueueSlots[i] = queue.transform.Find("QueueSlot" + (1 + i)).GetComponent<CharacterAvatarQueueSlot>();
+        }
+    }
     public void AssignCharacterToTeamSlot(Character character, int slotIndex)
     {
         CharacterAvatarTeamSlots[slotIndex].AssignCharacter(character);

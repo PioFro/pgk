@@ -137,7 +137,10 @@ public class FloorController : MonoBehaviour
             Instantiate(fogTile, new Vector3(vec.x, vec.y, -2), Quaternion.identity);
         }
         if (!startFloor)
-            Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity);
+            if(_leftExit == false || _rightExit == false)
+                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.Euler(0,0,90));
+            else
+                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity);
     }
     public void setExits(bool up, bool down, bool right, bool left)
     {
