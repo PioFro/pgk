@@ -30,7 +30,7 @@ public class CharacterSpawner : MonoBehaviour
 
     private void RandomizeCharacterStats(Character character)
     {
-        character.Stats.Id = 100 + SpawnedCharacters.Count;
+        character.Stats.Id = 1000 + SpawnedCharacters.Count;
         character.Stats.CurrentHitPoints = character.Stats.HitPoints = Random.Range(10, 21);
         character.Stats.CurrentInitiative = character.Stats.Initiative = Random.Range(5, 13);
         character.Stats.Attributes.ForEach(x => x.Value = Random.Range(1, 11));
