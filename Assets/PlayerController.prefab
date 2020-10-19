@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4059064546591579825}
   - component: {fileID: 4059064546591579831}
-  - component: {fileID: 4059064546591579830}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -51,20 +50,3 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 914fadb88cfb66043bcbac8786d5796d, type: 3}
   - {fileID: 21300000, guid: b61e65c25d6b4de43b6528ba0c56ea61, type: 3}
   deadSprite: {fileID: 21300000, guid: 37f59c7e904ed98469060479305a5f6c, type: 3}
---- !u!114 &4059064546591579830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4059064546591579824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 989e062817113154ebc4c4dc0aceb3ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avatarObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

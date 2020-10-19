@@ -1,71 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public PlayerUIController PlayerUIController;
 
-    public List<Character> team = new List<Character>();
-    public int teamSize = 4;
-    public static PlayerUIController uIController;
-    public GameObject floorPrefab;
+    private PlayerTeamController PlayerTeamController;
 
-    private void CreateTeam()
-    {
-        for(int i=0;i<teamSize;i++)
-        {
-            team.Add(new Character(i));
-            uIController.SetImageOnIndex(i, team[i]._property.avatar);
-            uIController.SetImageOnIndexActive(i, true);
-        }
+    public GameObject FloorPrefab;
 
-    }
     void Start()
     {
-        uIController = GetComponentInChildren<PlayerUIController>();
-        Debug.Log(uIController.ToString());
-        CreateTeam();
-        
+        PlayerTeamController = GetComponent<PlayerTeamController>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Finish")
+        if (collision.gameObject.CompareTag("Finish"))
         {
             Debug.Log("exit");
             Destroy(collision.gameObject.GetComponent<BoxCollider2D>());
 
-            floorPrefab.GetComponent<FloorController>().transform.position = calculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(),collision.gameObject.transform.position);
-            Instantiate(floorPrefab);
+            FloorPrefab.GetComponent<FloorController>().transform.position = calculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(), collision.gameObject.transform.position);
+            Instantiate(FloorPrefab);
 
-        }    
+        }
+        else if (gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy trigger enter");
+            //SceneManager.SetActiveScene(SceneManager.GetSceneByName("FightScene"));
+        }
     }
+
     private Vector2 calculateFloorStart(ExitProperties exitProperties, Vector2 position)
     {
-        FloorController tmp = floorPrefab.GetComponent<FloorController>();
+        FloorController tmp = FloorPrefab.GetComponent<FloorController>();
         SpriteRenderer _floorSprite = tmp.floortile.GetComponent<SpriteRenderer>();
         float _incrementX = _floorSprite.bounds.size.x;
         float _incrementY = _floorSprite.bounds.size.x;
 
         if (exitProperties.direction == ExitProperties.Dir.LEFT)
         {
-            floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX,_incrementY*2);
-            return position- new Vector2(tmp.sizeX * _incrementX, _incrementY);
+            FloorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX, _incrementY * 2);
+            return position - new Vector2(tmp.sizeX * _incrementX, _incrementY);
         }
         if (exitProperties.direction == ExitProperties.Dir.RIGHT)
         {
-            floorPrefab.GetComponent<FloorController>()._entry = position + new Vector2(_incrementX, _incrementY * 2);
+            FloorPrefab.GetComponent<FloorController>()._entry = position + new Vector2(_incrementX, _incrementY * 2);
             return position + new Vector2(0, _incrementY);
         }
         if (exitProperties.direction == ExitProperties.Dir.UP)
         {
-            floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX*2, _incrementY);
+            FloorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX * 2, _incrementY);
             return position + new Vector2(_incrementX, 0);
         }
         if (exitProperties.direction == ExitProperties.Dir.DOWN)
         {
-            floorPrefab.GetComponent<FloorController>()._entry = position + new Vector2(_incrementX*2, _incrementY);
-            return position - new Vector2(_incrementX, _incrementY*tmp.sizeY);
+            FloorPrefab.GetComponent<FloorController>()._entry = position + new Vector2(_incrementX * 2, _incrementY);
+            return position - new Vector2(_incrementX, _incrementY * tmp.sizeY);
         }
         return new Vector2(0, 0);
     }

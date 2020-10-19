@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6531cc4c8adac7243abf636b30e4ff0e, type: 3}
+  m_Name: Character5
+  m_EditorClassIdentifier: 
+  Avatar: {fileID: 21300000, guid: b61e65c25d6b4de43b6528ba0c56ea61, type: 3}
+  Stats:
+    Id: 5
+    CharacterName: Rage
+    Level: 1
+    ExperiencePoints: 0
+    HitPoints: 0
+    CurrentHitPoints: 0
+    Initiative: 0
+    CurrentInitiative: 0
+    Attributes:
+    - Attribute: {fileID: 11400000, guid: 7fdf9bc3b481b9444ba60bf5eca3b267, type: 2}
+      Value: 0
+    - Attribute: {fileID: 11400000, guid: fa20290007b4cf441bcd94ad4c1c5470, type: 2}
+      Value: 0
+    - Attribute: {fileID: 11400000, guid: 252206693f20b3c4d8ff3e27cf78b50a, type: 2}
+      Value: 0
+    Skills:
+    - Skill: {fileID: 11400000, guid: 4e27bcd6ee3faba46ac8db921e281135, type: 2}

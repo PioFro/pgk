@@ -1,34 +1,50 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using ScriptableObjects;
 using UnityEngine;
 
 public class PlayerTeamController : MonoBehaviour
 {
-    public List<Character> team = new List<Character>();
-    public int teamSize = 4;
-    public static PlayerUIController uIController;
-    // Start is called before the first frame update
-    private void CreateTeam()
-    {
-        for (int i = 0; i < teamSize; i++)
-        {
-            team.Add(new Character(i));
-            uIController.SetImageOnIndex(i, team[i]._property.avatar);
-            uIController.SetImageOnIndexActive(i, true);
-        }
+    public Character[] Team = new Character[MaxTeamSize];
 
-    }
+    private const int MaxTeamSize = 4;
+
+    public PlayerUIController PlayerUIController;
+
+    public CharacterSpawner CharacterSpawner;
+
     void Start()
     {
-        uIController = GetComponentInChildren<PlayerUIController>();
-        Debug.Log(uIController.ToString());
         CreateTeam();
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        //foreach (var character in Team)
+        //    while (character.Stats.CurrentHitPoints > 0)
+        //        character.OnHitPointsChanged(-1);
+    }
+
+    public void AssignCharacterToNextFreeSlot(Character character)
+    {
+        for (int i = 0; i < MaxTeamSize; i++)
+        {
+            if (Team[i] == null)
+            {
+                Team[i] = character;
+
+                return;
+            }
+        }
+    }
+
+    private void CreateTeam()
+    {
+        for (int i = 0; i < MaxTeamSize; i++)
+        {
+            var character = CharacterSpawner.SpawnCharacter();
+
+            Team[i] = character;
+
+            PlayerUIController.AssignCharacterToTeamSlot(character, i);
+        }
     }
 }
