@@ -39,7 +39,6 @@ public class FloorController : MonoBehaviour
     public bool _rightExit = true;
     public bool _upExit = true;
     public bool _downExit=true;
-
     void Start()
     {
         if(startFloor)
@@ -137,10 +136,13 @@ public class FloorController : MonoBehaviour
             Instantiate(fogTile, new Vector3(vec.x, vec.y, -2), Quaternion.identity);
         }
         if (!startFloor)
-            if(_leftExit == false || _rightExit == false)
-                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.Euler(0,0,90));
+            if (_leftExit == false || _rightExit == false)
+                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.Euler(0, 0, 90));
             else
                 Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity);
+
+
+        PlayerFloorController.encounterControllerStatic.AddEncounter(GetRandomTile());
     }
     public void setExits(bool up, bool down, bool right, bool left)
     {
@@ -149,10 +151,8 @@ public class FloorController : MonoBehaviour
         _upExit = up;
         _downExit = down;
     }
-
-    // Update is called once per frame
-    void Update()
+    public Vector2 GetRandomTile()
     {
-        
+        return _possiblePositionsTile[Random.Range(0, _possiblePositionsTile.Count - 1)];
     }
 }

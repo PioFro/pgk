@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5578594521077368233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 3.02, z: 0}
+  m_LocalPosition: {x: 66, y: 27.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,9 +49,9 @@ MonoBehaviour:
   walltile: {fileID: 614578368159572804, guid: b9d2750b7e34f2f48af408c84b317cda, type: 3}
   exitTile: {fileID: 1753863294651382990, guid: 176b713cb68196c4b8d3310fdbd61fd7,
     type: 3}
-  entryTile: {fileID: 7662361939284562945, guid: f1cc95f98eb952041b7218d34baa20e7,
+  entryTile: {fileID: 5214250371795931554, guid: 969e08144a957974e97617cd26c61666,
     type: 3}
-  _entry: {x: -3, y: 0.01999998}
+  _entry: {x: 66, y: 30.1}
   player: {fileID: 0}
   sizeX: 10
   sizeY: 5

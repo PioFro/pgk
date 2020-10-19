@@ -296,7 +296,6 @@ GameObject:
   - component: {fileID: 1134816817}
   - component: {fileID: 1134816823}
   - component: {fileID: 1134816819}
-  - component: {fileID: 1134816822}
   - component: {fileID: 1134816824}
   m_Layer: 0
   m_Name: Player
@@ -421,20 +420,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1134816822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134816816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00ab3327c4fa9fd4c9b5854776d4c212, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FloorPrefab: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
-    type: 3}
 --- !u!114 &1134816823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorPrefab: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
     type: 3}
+  encounterController: {fileID: 1839263711}
 --- !u!1 &1690475481
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +536,53 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!1 &1839263709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839263710}
+  - component: {fileID: 1839263711}
+  m_Layer: 0
+  m_Name: EncounterController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1839263710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839263709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1839263711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839263709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad15d67b4c8f1947b023baffc32098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EncounterPrefab: {fileID: 356075841823394706, guid: 678bd292deb25114bafb3716cfd2fcd1,
+    type: 3}
+  Encounters:
+  - {fileID: 11400000, guid: 852c8e9e0792c31489b9a4ceb5006ed8, type: 2}
 --- !u!1001 &4820809052600168747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -841,7 +874,7 @@ PrefabInstance:
     - target: {fileID: 4820809053404725453, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4825054544109671669, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
@@ -1273,6 +1306,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5214250371795931554, guid: 969e08144a957974e97617cd26c61666,
         type: 3}
+    - target: {fileID: 5578594521077368232, guid: 07ec24d87222f4e478898223d7623c8c,
+        type: 3}
+      propertyPath: encounterController
+      value: 
+      objectReference: {fileID: 1839263711}
     - target: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
         type: 3}
       propertyPath: m_Name
@@ -1342,6 +1380,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8528234768520653776, guid: 21dda51c09e038a48b97347c874908e9,
+        type: 3}
+      propertyPath: EnemyCharacters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528234768520653776, guid: 21dda51c09e038a48b97347c874908e9,
+        type: 3}
+      propertyPath: EnemyCharacters.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: de1c9d292b6874740ba7884e3f8c3406,
+        type: 2}
+    - target: {fileID: 8528234768520653776, guid: 21dda51c09e038a48b97347c874908e9,
+        type: 3}
+      propertyPath: EnemyCharacters.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 29b02b617dc16c74fb9133cae0447df4,
+        type: 2}
     - target: {fileID: 8528234768520653777, guid: 21dda51c09e038a48b97347c874908e9,
         type: 3}
       propertyPath: m_Name

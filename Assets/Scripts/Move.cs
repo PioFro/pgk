@@ -12,4 +12,6 @@ public class Move : MonoBehaviour
         Vector3 movement = new Vector3(horizontal, vertical, 0) * (Time.deltaTime * Speed);
         transform.position += movement;
     }
+
+
 }

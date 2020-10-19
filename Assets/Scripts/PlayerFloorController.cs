@@ -8,6 +8,14 @@ public class PlayerFloorController : MonoBehaviour
 
     
     public GameObject floorPrefab;
+
+    public EncounterController encounterController;
+    public static EncounterController encounterControllerStatic;
+    private void Awake()
+    {
+        encounterControllerStatic = encounterController;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Finish")
@@ -21,8 +29,6 @@ public class PlayerFloorController : MonoBehaviour
             floorPrefab.GetComponent<FloorController>()._downExit = true;
             floorPrefab.GetComponent<FloorController>()._leftExit = true;
             floorPrefab.GetComponent<FloorController>()._rightExit = true;
-
-
         }    
     }
     private Vector2 calculateFloorStart(ExitProperties exitProperties, Vector2 position)
