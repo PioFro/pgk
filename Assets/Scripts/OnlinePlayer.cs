@@ -16,25 +16,23 @@ public class OnlinePlayer : NetworkBehaviour
     [SyncVar]
     public int id;
 
-    public static event Action<OnlinePlayer, Encounter> ReceivedEncounter;
+    public static event Action<OnlinePlayer, Encounter, Encounter> ReceivedEncounter;
 
-    public static event Action<OnlinePlayer, Encounter> ReceivedTeam;
-
-    public static event Action<OnlinePlayer, Skill> CastedSkill; //How to define target
+    public static event Action<OnlinePlayer, Skill, int> CastedSkill; //How to define target
 
     [Command]
-    void SendEncounterData(Encounter encounterData)
+    void SendEncounterData(Encounter encounterData, Encounter teamData)
     {
         if(encounterData!=null)
         {
-            RecieveTheEncounter(encounterData);
+            RecieveTheEncounter(encounterData, teamData);
         }
     }
 
     [ClientRpc]
-    public void RecieveTheEncounter(Encounter encounterData)
+    public void RecieveTheEncounter(Encounter encounterData, Encounter teamData)
     {
-        ReceivedEncounter?.Invoke(this, encounterData);
+        ReceivedEncounter?.Invoke(this, encounterData,teamData);
     }
     public override void OnStartServer()
     {
