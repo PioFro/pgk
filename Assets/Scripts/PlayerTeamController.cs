@@ -47,4 +47,14 @@ public class PlayerTeamController : MonoBehaviour
             PlayerUIController.AssignCharacterToTeamSlot(character, i);
         }
     }
+    public Encounter GetMyTeamAsEncounter()
+    {
+        Encounter enc = new Encounter();
+        enc.CharactersInEncounter = this.Team;
+        
+        //tmp
+        enc.EncounterSprite = this.Team[0].Avatar;
+
+        return enc;
+    }
 }
