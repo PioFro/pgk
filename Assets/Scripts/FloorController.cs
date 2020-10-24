@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FloorController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject DungeonContainer;
 
     public GameObject floortile;
     public GameObject fogTile;
@@ -40,7 +40,7 @@ public class FloorController : MonoBehaviour
     {
         if (startFloor)
         {
-            this.setExits(true, true, true, true);
+            this.SetExits(true, true, true, true);
         }
 
         if (numberOfExits > sizeX || numberOfExits > sizeY || numberOfExits < 2)
@@ -50,6 +50,7 @@ public class FloorController : MonoBehaviour
         _incrementX = _floorSprite.bounds.size.x;
         _incrementY = _floorSprite.bounds.size.y;
         Debug.Log("x, y" + _incrementX + " , " + _incrementY);
+
         for (int x = 0; x < sizeX; x++)
         {
             for (int y = 0; y < sizeY; y++)
@@ -118,36 +119,38 @@ public class FloorController : MonoBehaviour
             if (vec.y == (sizeY - 1) * _incrementY + transform.position.y)
                 exitTile.GetComponent<ExitProperties>().direction = ExitProperties.Dir.UP;
 
-            Instantiate(exitTile, vec, Quaternion.identity);
+            Instantiate(exitTile, vec, Quaternion.identity, this.transform);
         }
 
         foreach (Vector2 vec in _possiblePositionsWall)
         {
             //Debug.Log("Distance between entry and wall: " + Vector2.Distance(vec, _entry));
             if (Vector2.Distance(vec, _entry) > 1)
-                Instantiate(walltile, vec, Quaternion.identity);
+                Instantiate(walltile, vec, Quaternion.identity, this.transform);
         }
         foreach (Vector2 vec in _possiblePositionsTile)
         {
-            Instantiate(floortile, vec, Quaternion.identity);
-            Instantiate(fogTile, new Vector3(vec.x, vec.y, -2), Quaternion.identity);
+            Instantiate(floortile, vec, Quaternion.identity, this.transform);
+            Instantiate(fogTile, new Vector3(vec.x, vec.y, -2), Quaternion.identity, this.transform);
         }
         if (!startFloor)
             if (_leftExit == false || _rightExit == false)
-                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.Euler(0, 0, 90));
+                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.Euler(0, 0, 90), this.transform);
             else
-                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity);
+                Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity, this.transform);
 
 
-        PlayerFloorController.encounterControllerStatic.AddEncounter(GetRandomTile());
+        //PlayerFloorController.encounterControllerStatic.SpawnRandomEncounter(GetRandomTile());
     }
-    public void setExits(bool up, bool down, bool right, bool left)
+
+    public void SetExits(bool up, bool down, bool right, bool left)
     {
         _leftExit = left;
         _rightExit = right;
         _upExit = up;
         _downExit = down;
     }
+
     public Vector2 GetRandomTile()
     {
         return _possiblePositionsTile[Random.Range(0, _possiblePositionsTile.Count - 1)];

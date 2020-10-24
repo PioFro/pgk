@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerTeamController : MonoBehaviour
 {
-    public Character[] Team = new Character[MaxTeamSize];
+    public Character[] Team = new Character[PlayerTeamController.MaxTeamSize];
 
-    private const int MaxTeamSize = 4;
+    public static int MaxTeamSize = 4;
 
     public PlayerUIController PlayerUIController;
 

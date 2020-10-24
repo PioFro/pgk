@@ -1,11 +1,11 @@
 ﻿using ScriptableObjects;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PlayerUIController : MonoBehaviour
 {
-    public Button GoToDungeonButton;
+    public GameObject GoToDungeonButton;
     public GameObject TeamAvatars;
     public GameObject QueueAvatars;
     public GameObject ShopTeamAvatars;
@@ -16,9 +16,7 @@ public class PlayerUIController : MonoBehaviour
     public CharacterAvatarTeamSlot[] CharacterAvatarTeamSlots = new CharacterAvatarTeamSlot[4];
     public CharacterAvatarQueueSlot[] CharacterAvatarQueueSlots = new CharacterAvatarQueueSlot[8];
 
-    public void Awake()
-    {
-    }
+    private FightController FightController;
 
     private void OnEnable()
     {
@@ -40,56 +38,85 @@ public class PlayerUIController : MonoBehaviour
         SceneManager.LoadScene("DungeonScene");
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void SubscribeFightController(FightController fightController)
+    {
+        FightController = fightController;
+        FightController.FightStarted += OnFightStarted;
+        FightController.FightFinished += OnFightFinished;
+    }
+
+    private void OnFightStarted()
+    {
+        FightController.CharactersEnqueued += PushCharactersToQueueSlots;
+        FightController.CharacterDequeued += PopCharacterFromQueueSlot;
+    }
+
+    private void OnFightFinished()
+    {
+        FightController.CharactersEnqueued -= PushCharactersToQueueSlots;
+        FightController.CharacterDequeued -= PopCharacterFromQueueSlot;
+
+        SceneManager.LoadScene("DungeonScene");
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         switch (scene.name)
         {
             case "DungeonScene":
-                GoToDungeonButton.gameObject.SetActive(false);
+                GoToDungeonButton.SetActive(false);
                 ShopTeamAvatars.SetActive(false);
                 ShopCandidatesAvatars.SetActive(false);
 
                 TeamAvatars.SetActive(true);
-                QueueAvatars.SetActive(true);
+                QueueAvatars.SetActive(false);
                 break;
             case "CityScene":
                 TeamAvatars.SetActive(false);
                 QueueAvatars.SetActive(false);
 
-                GoToDungeonButton.gameObject.SetActive(true);
+                GoToDungeonButton.SetActive(true);
                 ShopTeamAvatars.SetActive(true);
                 ShopCandidatesAvatars.SetActive(true);
+                break;
+            case "FightScene":
+                QueueAvatars.SetActive(true);
+
                 break;
             default:
                 break;
         }
     }
 
-    public void SetImageOnIndex(int index, Sprite img)
+    private void PopCharacterFromQueueSlot()
     {
-        if (CharacterAvatarTeamIndexOutOfRange(index))
-            return;
+        var activeQueueSlotsCount = CharacterAvatarQueueSlots.Count(x => x.HasAssignedCharacter());
 
-        CharacterAvatarTeamSlots[index].SetAvatar(img); 
+        for (int i = 1; i < activeQueueSlotsCount; i++)
+        {
+            CharacterAvatarQueueSlots[i - 1].AssignCharacter(CharacterAvatarQueueSlots[i].GetAssignedCharacter());
+        }
+
+        CharacterAvatarQueueSlots[activeQueueSlotsCount - 1].AssignCharacter(null);
+        CharacterAvatarQueueSlots[activeQueueSlotsCount - 1].gameObject.SetActive(false);
+
+        if (activeQueueSlotsCount == 1)
+        {
+            QueueAvatars.SetActive(false);
+        }
     }
 
-    public void ChangeTextOnIndex(int index, string newText)
+    private void PushCharactersToQueueSlots(Character[] characters)
     {
-        if (CharacterAvatarTeamIndexOutOfRange(index))
-            return;
-        CharacterAvatarTeamSlots[index].GetComponentInChildren<Text>().text = newText;
-    }
+        for (int i = 0; i < characters.Length; i++)
+        {
+            var queueSlot = CharacterAvatarQueueSlots[i];
 
-    public void SetDeadOnIndex(int index)
-    {
-        if (CharacterAvatarTeamIndexOutOfRange(index))
-            return;
+            queueSlot.AssignCharacter(characters[i]);
 
-        CharacterAvatarTeamSlots[index].GetComponent<Image>().sprite = Properties.deadStaticSprite;
-    }
+            queueSlot.gameObject.SetActive(true);
+        }
 
-    private bool CharacterAvatarTeamIndexOutOfRange(int index)
-    {
-        return index < 0 || index >= CharacterAvatarTeamSlots.Length; 
+        QueueAvatars.SetActive(true);
     }
 }

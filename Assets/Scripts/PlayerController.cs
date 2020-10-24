@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,12 +7,18 @@ public class PlayerController : MonoBehaviour
     public PlayerUIController PlayerUIController;
 
     private PlayerTeamController PlayerTeamController;
+    public Camera PlayerCamera;
 
     public GameObject FloorPrefab;
+
+    public GameObject FightContainerPrefab;
+    private GameObject FightContainerInstance;
+    private FightController FightController;
 
     void Start()
     {
         PlayerTeamController = GetComponent<PlayerTeamController>();
+        PlayerCamera = GetComponentInChildren<Camera>();
     }
 
     private void OnEnable()
@@ -32,33 +38,27 @@ public class PlayerController : MonoBehaviour
             Debug.Log("exit");
             Destroy(collision.gameObject.GetComponent<BoxCollider2D>());
 
-            FloorPrefab.GetComponent<FloorController>().transform.position = calculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(), collision.gameObject.transform.position);
+            FloorPrefab.GetComponent<FloorController>().transform.position = CalculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(), collision.gameObject.transform.position);
             Instantiate(FloorPrefab);
-
-        }
-        else if (gameObject.CompareTag("Player") && collision.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Enemy trigger enter");
-            //SceneManager.SetActiveScene(SceneManager.GetSceneByName("FightScene"));
         }
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void PlayerEncountered(Character[] encounteredCharacters)
     {
-        switch (scene.name)
-        {
-            case "DungeonScene":
-                GetComponent<Move>().enabled = true;
-                break;
-            case "CityScene":
-                GetComponent<Move>().enabled = false;
-                break;
-            default:
-                break;
-        }
+        Debug.Log("on encounter");
+
+        SceneManager.LoadScene("FightScene", LoadSceneMode.Additive);
+
+        FightContainerInstance = Instantiate(FightContainerPrefab);
+        DontDestroyOnLoad(FightContainerInstance);
+        FightController = FightContainerInstance.GetComponent<FightController>();
+
+        PlayerUIController.SubscribeFightController(FightController);
+
+        FightController.SetupFight(PlayerTeamController.Team, encounteredCharacters);
     }
 
-    private Vector2 calculateFloorStart(ExitProperties exitProperties, Vector2 position)
+    private Vector2 CalculateFloorStart(ExitProperties exitProperties, Vector2 position)
     {
         FloorController tmp = FloorPrefab.GetComponent<FloorController>();
         SpriteRenderer _floorSprite = tmp.floortile.GetComponent<SpriteRenderer>();
@@ -88,8 +88,36 @@ public class PlayerController : MonoBehaviour
         return new Vector2(0, 0);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        switch (scene.name)
+        {
+            case "DungeonScene":
+                GetComponent<Move>().enabled = true;
+                GetComponent<SpriteRenderer>().enabled = true;
+                PlayerCamera.enabled = true;
+
+                if (FightContainerInstance != null)
+                {
+                    Destroy(FightContainerInstance);
+                }
+                break;
+            case "CityScene":
+                GetComponent<Move>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = false;
+                PlayerCamera.enabled = true;
+
+                if (FightContainerInstance != null)
+                {
+                    Destroy(FightContainerInstance);
+                }
+                break;
+            case "FightScene":
+                GetComponent<Move>().enabled = false;
+                PlayerCamera.enabled = false;
+                break;
+            default:
+                break;
+        }
     }
 }

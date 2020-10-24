@@ -6,8 +6,11 @@ namespace ScriptableObjects
     public class Character : ScriptableObject
     {
         public Sprite Avatar;
+        public Sprite FightSprite;
 
         public CharacterStats Stats;
+
+        public bool IsEnemy;
 
         public bool IsDead { get { return Stats.CurrentHitPoints == 0; } }
 

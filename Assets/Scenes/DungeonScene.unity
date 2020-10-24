@@ -197,6 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1839263710}
   - component: {fileID: 1839263711}
+  - component: {fileID: 1839263712}
   m_Layer: 0
   m_Name: EncounterController
   m_TagString: Untagged
@@ -232,8 +233,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EncounterPrefab: {fileID: 356075841823394706, guid: 678bd292deb25114bafb3716cfd2fcd1,
     type: 3}
-  Encounters:
+  AvailableEncounters:
   - {fileID: 11400000, guid: 852c8e9e0792c31489b9a4ceb5006ed8, type: 2}
+  - {fileID: 11400000, guid: 3b0d64d67a6091a40968305b6a71f9c9, type: 2}
+  SpawnedEncounters: []
+--- !u!114 &1839263712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839263709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1c165c098e7f544bad6315cce02b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5578594523020160811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -348,3 +363,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07ec24d87222f4e478898223d7623c8c, type: 3}
+--- !u!1 &5578594523020160812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5578594523020160811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5578594523020160813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5578594523020160812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1c165c098e7f544bad6315cce02b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

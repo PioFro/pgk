@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6531cc4c8adac7243abf636b30e4ff0e, type: 3}
   m_Name: Character2
   m_EditorClassIdentifier: 
-  Avatar: {fileID: 21300000, guid: 2195e0eb993119c48b2df3d968c38fdd, type: 3}
+  Avatar: {fileID: 21300000, guid: 2f811976802436442a241123ba4992c2, type: 3}
+  FightSprite: {fileID: 21300000, guid: 7af27b8ca52db4b94baaebcdc7e0ef99, type: 3}
   Stats:
     Id: 2
     CharacterName: Miguel

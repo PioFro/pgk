@@ -20,6 +20,10 @@ public abstract class CharacterAvatarSlot : MonoBehaviour
         {
             Image.sprite = character.Avatar;
         }
+        else
+        {
+            Image.sprite = null;
+        }
     }
 
     public void SetAvatar(Sprite sprite)
