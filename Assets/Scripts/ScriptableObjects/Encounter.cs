@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 namespace ScriptableObjects
 {
     [CreateAssetMenu(menuName = "SO/Create Encounter")]
@@ -13,14 +10,14 @@ namespace ScriptableObjects
 
         public Sprite EncounterSprite;
 
-        public delegate void OnEncounter(Character[] encounteredCharacters);
+        public delegate void PlayerEncounteredDelegate(Character[] encounteredCharacters);
 
-        public event OnEncounter EncounterEvent;
+        public event PlayerEncounteredDelegate PlayerEncountered;
 
         public void EncounterTrigger()
         {
             Debug.Log("TriggerInEncounter");
-            EncounterEvent.Invoke(this.CharactersInEncounter);
+            PlayerEncountered.Invoke(this.CharactersInEncounter);
         }
     }
 }

@@ -10,7 +10,6 @@ public abstract class CharacterAvatarSlot : MonoBehaviour
 
     protected virtual void Start()
     {
-        Image = GetComponent<Image>();
     }
 
     public virtual void AssignCharacter(Character character)
@@ -20,6 +19,10 @@ public abstract class CharacterAvatarSlot : MonoBehaviour
         if (character != null)
         {
             Image.sprite = character.Avatar;
+        }
+        else
+        {
+            Image.sprite = null;
         }
     }
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Character3
   m_EditorClassIdentifier: 
   Avatar: {fileID: 21300000, guid: af6134d094f500e4e80c637397f89573, type: 3}
+  FightSprite: {fileID: 21300000, guid: 7af27b8ca52db4b94baaebcdc7e0ef99, type: 3}
   Stats:
     Id: 3
     CharacterName: John

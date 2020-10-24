@@ -6,8 +6,6 @@ public class CharacterSpawner : MonoBehaviour
 {
     public List<Character> AvailableCharacters = new List<Character>();
 
-    public List<Character> EnemyCharacters = new List<Character>();
-
     public List<Character> SpawnedCharacters = new List<Character>();
 
     public Character SpawnCharacter()
@@ -16,7 +14,7 @@ public class CharacterSpawner : MonoBehaviour
 
         if (availableCharactersCount > 0)
         {
-            var index = Random.Range(0, availableCharactersCount - 1);
+            var index = Random.Range(0, availableCharactersCount);
             var character = Instantiate(AvailableCharacters[index]);
 
             SpawnedCharacters.Add(character);
@@ -32,7 +30,7 @@ public class CharacterSpawner : MonoBehaviour
 
     private void RandomizeCharacterStats(Character character)
     {
-        character.Stats.Id = 100 + SpawnedCharacters.Count;
+        character.Stats.Id = 1000 + SpawnedCharacters.Count;
         character.Stats.CurrentHitPoints = character.Stats.HitPoints = Random.Range(10, 21);
         character.Stats.CurrentInitiative = character.Stats.Initiative = Random.Range(5, 13);
         character.Stats.Attributes.ForEach(x => x.Value = Random.Range(1, 11));

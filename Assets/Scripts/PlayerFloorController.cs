@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerFloorController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    
     public GameObject floorPrefab;
 
-    public EncounterController encounterController;
-    public static EncounterController encounterControllerStatic;
+    public GameObject DungeonContainer;
+
+    public EncounterSpawner encounterController;
+    public static EncounterSpawner encounterControllerStatic;
+
     private void Awake()
     {
         encounterControllerStatic = encounterController;
@@ -18,20 +18,20 @@ public class PlayerFloorController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Finish")
+        if (collision.gameObject.tag == "Finish")
         {
             Debug.Log("exit");
             Destroy(collision.gameObject.GetComponent<BoxCollider2D>());
 
-            floorPrefab.GetComponent<FloorController>().transform.position = calculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(),collision.gameObject.transform.position);
+            floorPrefab.GetComponent<FloorController>().transform.position = CalculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(), collision.gameObject.transform.position);
             Instantiate(floorPrefab);
             floorPrefab.GetComponent<FloorController>()._upExit = true;
             floorPrefab.GetComponent<FloorController>()._downExit = true;
             floorPrefab.GetComponent<FloorController>()._leftExit = true;
             floorPrefab.GetComponent<FloorController>()._rightExit = true;
-        }    
+        }
     }
-    private Vector2 calculateFloorStart(ExitProperties exitProperties, Vector2 position)
+    private Vector2 CalculateFloorStart(ExitProperties exitProperties, Vector2 position)
     {
         FloorController tmp = floorPrefab.GetComponent<FloorController>();
         SpriteRenderer _floorSprite = tmp.floortile.GetComponent<SpriteRenderer>();
@@ -40,14 +40,14 @@ public class PlayerFloorController : MonoBehaviour
 
         if (exitProperties.direction == ExitProperties.Dir.LEFT)
         {
-            floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX,0);
+            floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(_incrementX, 0);
             floorPrefab.GetComponent<FloorController>()._rightExit = false;
-            return position- new Vector2(tmp.sizeX * _incrementX, _incrementY);
+            return position - new Vector2(tmp.sizeX * _incrementX, _incrementY);
         }
         if (exitProperties.direction == ExitProperties.Dir.RIGHT)
         {
             floorPrefab.GetComponent<FloorController>()._entry = position + new Vector2(_incrementX, 0);
-            floorPrefab.GetComponent<FloorController>()._leftExit =false;
+            floorPrefab.GetComponent<FloorController>()._leftExit = false;
             return position + new Vector2(_incrementX, -_incrementY);
         }
         if (exitProperties.direction == ExitProperties.Dir.UP)
@@ -60,7 +60,7 @@ public class PlayerFloorController : MonoBehaviour
         {
             floorPrefab.GetComponent<FloorController>()._entry = position - new Vector2(0, _incrementY);
             floorPrefab.GetComponent<FloorController>()._upExit = false;
-            return position - new Vector2(_incrementX, _incrementY*tmp.sizeY);
+            return position - new Vector2(_incrementX, _incrementY * tmp.sizeY);
         }
         return new Vector2(0, 0);
     }
