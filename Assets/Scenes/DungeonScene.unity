@@ -397,7 +397,7 @@ PrefabInstance:
         type: 3}
       propertyPath: CharacterDeadAvatar
       value: 
-      objectReference: {fileID: 21300000, guid: 37f59c7e904ed98469060479305a5f6c,
+      objectReference: {fileID: 21300000, guid: c1ec6cd5981b59e40ae53927858cd4fe,
         type: 3}
     - target: {fileID: 1844545380276160804, guid: d92cb9f733644f2409ea4b366b0f96ae,
         type: 3}
