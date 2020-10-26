@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5578594521077368233}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 12.04, z: 0}
+  m_LocalPosition: {x: -42, y: 6.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a182ce560165d47820ae8df8fbb050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DungeonContainer: {fileID: 0}
   floortile: {fileID: 3454402447236806263, guid: 3d93cd28b8b0a0b4db29b56f34a2b31b,
     type: 3}
   fogTile: {fileID: 5771236826301558735, guid: a116fcec39c5e6745b05feb3358c6136, type: 3}
@@ -51,7 +52,7 @@ MonoBehaviour:
     type: 3}
   entryTile: {fileID: 5214250371795931554, guid: 969e08144a957974e97617cd26c61666,
     type: 3}
-  _entry: {x: 6, y: 9.04}
+  _entry: {x: -15, y: 9.08}
   sizeX: 10
   sizeY: 5
   numberOfExits: 2

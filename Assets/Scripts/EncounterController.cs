@@ -21,7 +21,9 @@ public class EncounterController : MonoBehaviour
             }
             else
             {
+                GetComponent<SpriteRenderer>().enabled = false;
                 Encounter.EncounterTrigger();
+
             }
         }
     }

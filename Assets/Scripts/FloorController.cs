@@ -140,7 +140,7 @@ public class FloorController : MonoBehaviour
                 Instantiate(entryTile, new Vector3(_entry.x, _entry.y, -2), Quaternion.identity, this.transform);
 
 
-        //PlayerFloorController.encounterControllerStatic.SpawnRandomEncounter(GetRandomTile());
+        PlayerFloorController.EncounterSpawnerStatic.SpawnRandomEncounter(GetRandomTile());
     }
 
     public void SetExits(bool up, bool down, bool right, bool left)

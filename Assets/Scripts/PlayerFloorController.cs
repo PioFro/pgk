@@ -8,12 +8,12 @@ public class PlayerFloorController : MonoBehaviour
 
     public GameObject DungeonContainer;
 
-    public EncounterSpawner encounterController;
-    public static EncounterSpawner encounterControllerStatic;
+    public EncounterSpawner EncounterSpawner;
+    public static EncounterSpawner EncounterSpawnerStatic;
 
     private void Awake()
     {
-        encounterControllerStatic = encounterController;
+        EncounterSpawnerStatic = EncounterSpawner;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

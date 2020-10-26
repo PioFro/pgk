@@ -297,6 +297,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cbb6c7272919b4384210c78744fcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1519466556
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4631922
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.339423
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.51412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920586, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372324807281920588, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+        type: 3}
+      propertyPath: m_Name
+      value: EncounterSpawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b3de5c39f6bf6a40b4db01f784953d0, type: 3}
+--- !u!114 &1519466560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2372324807281920587, guid: 7b3de5c39f6bf6a40b4db01f784953d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1519466556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0627d034337cdff428525cfecb9e9916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1693047925
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +542,7 @@ GameObject:
   - component: {fileID: 2139447048}
   - component: {fileID: 2139447047}
   - component: {fileID: 2139447054}
+  - component: {fileID: 2139447055}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -516,8 +598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerUIController: {fileID: 887349}
-  FloorPrefab: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
-    type: 3}
+  PlayerCamera: {fileID: 0}
   FightContainerPrefab: {fileID: 7702632837308741037, guid: 9722c22a48582e84bba6f7a569be6f25,
     type: 3}
 --- !u!50 &2139447050
@@ -632,6 +713,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1c165c098e7f544bad6315cce02b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2139447055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139447046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294009d52d90b4e4facab792b0f0a782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPrefab: {fileID: 5578594521077368233, guid: 07ec24d87222f4e478898223d7623c8c,
+    type: 3}
+  DungeonContainer: {fileID: 0}
+  EncounterSpawner: {fileID: 1519466560}
 --- !u!1001 &845368574804111271
 PrefabInstance:
   m_ObjectHideFlags: 0
