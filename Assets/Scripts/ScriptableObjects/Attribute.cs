@@ -7,6 +7,6 @@ namespace ScriptableObjects
     {
         public string Description;
 
-        public Sprite Icon;
+        public int IconId;
     }
 }

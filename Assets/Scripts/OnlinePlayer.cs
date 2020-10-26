@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class OnlinePlayer : NetworkBehaviour
 {
     [Header("Players Team")]
-    public Encounter team;
+    public SerializableEncounter team;
 
     [SyncVar]
     public string name;
@@ -16,12 +16,12 @@ public class OnlinePlayer : NetworkBehaviour
     [SyncVar]
     public int id;
 
-    public static event Action<OnlinePlayer, Encounter, Encounter> ReceivedEncounter;
+    public static event Action<SerializableEncounter, SerializableEncounter> ReceivedEncounter;
 
-    public static event Action<OnlinePlayer, Skill, int> CastedSkill; //How to define target
+    public static event Action<SerializableSkill, int> CastedSkill; //How to define target
 
     [Command]
-    void SendEncounterData(Encounter encounterData, Encounter teamData)
+    public void SendEncounterData(SerializableEncounter encounterData, SerializableEncounter teamData)
     {
         if(encounterData!=null)
         {
@@ -30,9 +30,9 @@ public class OnlinePlayer : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RecieveTheEncounter(Encounter encounterData, Encounter teamData)
+    public void RecieveTheEncounter(SerializableEncounter encounterData, SerializableEncounter teamData)
     {
-        ReceivedEncounter?.Invoke(this, encounterData,teamData);
+        ReceivedEncounter?.Invoke(encounterData,teamData);
     }
     public override void OnStartServer()
     {

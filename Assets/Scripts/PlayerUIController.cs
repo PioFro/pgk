@@ -55,7 +55,7 @@ public class PlayerUIController : MonoBehaviour
         if (CharacterAvatarTeamIndexOutOfRange(index))
             return;
 
-        CharacterAvatarTeamSlots[index].GetComponent<Image>().sprite = Properties.deadStaticSprite;
+        CharacterAvatarTeamSlots[index].GetComponent<Image>().sprite = AssetProvider.SpriteStore.GetSpriteByName("Dead1");
     }
 
     private bool CharacterAvatarTeamIndexOutOfRange(int index)

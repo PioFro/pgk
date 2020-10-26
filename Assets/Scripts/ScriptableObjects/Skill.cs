@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ScriptableObjects
 {
@@ -12,5 +13,6 @@ namespace ScriptableObjects
         public float HitRatio;
 
         public float DamageMultiplier;
+
     }
 }
