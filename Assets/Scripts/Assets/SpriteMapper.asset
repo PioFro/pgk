@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac2788e1ba6b484682212c96752c4a2, type: 3}
+  m_Name: SpriteMapper
+  m_EditorClassIdentifier: 
+  map:
+  - {fileID: 21300000, guid: 9cb023dead1ddc147ad78d769d9c042b, type: 3}
+  - {fileID: 21300000, guid: 2f811976802436442a241123ba4992c2, type: 3}
+  - {fileID: 21300000, guid: af6134d094f500e4e80c637397f89573, type: 3}
+  - {fileID: 21300000, guid: 9fc9960ccf2f7304fa1540ae113c2054, type: 3}
+  - {fileID: 21300000, guid: c03ff3c37c587be4ca4172fd505a58b7, type: 3}
+  - {fileID: 21300000, guid: 7880821ae0e694ff185fd812fdbe7efd, type: 3}
+  - {fileID: 21300000, guid: a1fc1786c427341769dba6c83feadde4, type: 3}
+  placeholder: {fileID: 21300000, guid: 448d3aba5d2244712a8acb1c7c051c68, type: 3}

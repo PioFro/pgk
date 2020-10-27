@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerUIController: {fileID: 887349}
-  PlayerCamera: {fileID: 0}
+  PlayerCamera: {fileID: 315429956}
   FightContainerPrefab: {fileID: 7702632837308741037, guid: 9722c22a48582e84bba6f7a569be6f25,
     type: 3}
 --- !u!50 &2139447050

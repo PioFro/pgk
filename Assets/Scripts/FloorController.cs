@@ -38,6 +38,11 @@ public class FloorController : MonoBehaviour
 
     void Start()
     {
+        if (PlayerFloorController.floors.Contains(transform.position))
+        { 
+            Destroy(this);
+            return;
+        }
         if (startFloor)
         {
             this.SetExits(true, true, true, true);
@@ -141,6 +146,7 @@ public class FloorController : MonoBehaviour
 
 
         PlayerFloorController.EncounterSpawnerStatic.SpawnRandomEncounter(GetRandomTile());
+        PlayerFloorController.floors.Add(transform.position);
     }
 
     public void SetExits(bool up, bool down, bool right, bool left)

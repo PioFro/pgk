@@ -7,6 +7,7 @@ public class CharacterAttributes
 
     public int Value;
 
+    public CharacterAttributes() { }
     public CharacterAttributes(Attribute attribute, int value)
     {
         Attribute = attribute;

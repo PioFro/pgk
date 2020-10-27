@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerFloorController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerFloorController : MonoBehaviour
 
     public EncounterSpawner EncounterSpawner;
     public static EncounterSpawner EncounterSpawnerStatic;
+    public static List<Vector2> floors = new List<Vector2>();
 
     private void Awake()
     {
@@ -22,8 +24,8 @@ public class PlayerFloorController : MonoBehaviour
         {
             Debug.Log("exit");
             Destroy(collision.gameObject.GetComponent<BoxCollider2D>());
-
-            floorPrefab.GetComponent<FloorController>().transform.position = CalculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(), collision.gameObject.transform.position);
+            Vector2 nextFloorPosition = CalculateFloorStart(collision.gameObject.GetComponent<ExitProperties>(), collision.gameObject.transform.position);
+            floorPrefab.GetComponent<FloorController>().transform.position = nextFloorPosition;
             Instantiate(floorPrefab);
             floorPrefab.GetComponent<FloorController>()._upExit = true;
             floorPrefab.GetComponent<FloorController>()._downExit = true;
