@@ -45,6 +45,7 @@ public class OnlinePlayer : NetworkBehaviour
     public void RecieveTheEncounter(SerializableEncounter encounterData, SerializableEncounter teamData)
     {
         ReceivedEncounter?.Invoke(encounterData, teamData);
+        Debug.Log("Received Encounter");
     }
     public override void OnStartServer()
     {

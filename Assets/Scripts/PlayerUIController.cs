@@ -45,7 +45,7 @@ public class PlayerUIController : MonoBehaviour
         FightController.FightFinished += OnFightFinished;
     }
 
-    private void OnFightStarted()
+    private void OnFightStarted(Encounter enc)
     {
         FightController.CharactersEnqueued += PushCharactersToQueueSlots;
         FightController.CharacterDequeued += PopCharacterFromQueueSlot;

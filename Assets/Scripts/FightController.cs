@@ -13,7 +13,7 @@ public class FightController : MonoBehaviour
 
     public Queue<Character> RoundQueue = new Queue<Character>();
 
-    public delegate void FightStartedDelegate();
+    public delegate void FightStartedDelegate(Encounter encounter);
 
     public event FightStartedDelegate FightStarted;
 
@@ -52,7 +52,7 @@ public class FightController : MonoBehaviour
 
     public void SetupFight(Character[] teamCharacters, Character[] enemyCharacters)
     {
-        FightStarted.Invoke();
+        FightStarted.Invoke(new Encounter { CharactersInEncounter = enemyCharacters, EncounterSprite = AssetProvider.SpriteStore.placeholder});
 
         SetupTeam(teamCharacters);
         SetupEnemy(enemyCharacters);
@@ -93,6 +93,7 @@ public class FightController : MonoBehaviour
                     else
                     {
                         // Przeciwnik atakuje postac gracza
+                        // Casts skill??
                         var dmg = (int)(character.Stats.Strength * 2.5) + rng.Next(1, 3);
                         targetCharacter.OnHitPointsChanged(-dmg);
                     }
