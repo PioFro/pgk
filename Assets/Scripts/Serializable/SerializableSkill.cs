@@ -12,7 +12,7 @@ public class SerializableSkill
 
     public float HitRatio;
 
-    public float DamageMultiplier;
+    public float DamageMultiplier;//tmp attack value
 
     public SerializableSkill() { }
     public SerializableSkill(ScriptableObjects.Skill skill)

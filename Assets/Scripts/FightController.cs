@@ -29,6 +29,8 @@ public class FightController : MonoBehaviour
 
     public event CharacterDequeuedDelegate CharacterDequeued;
 
+    public static Encounter Enemy;
+
     private void Update()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -37,7 +39,7 @@ public class FightController : MonoBehaviour
         {
             var gameObject = hit.collider.gameObject;
 
-            if (gameObject.tag == "Enemy")
+            if (gameObject.tag == "Enemy"||gameObject.tag=="Player")
             {
                 for (int i = 0; i < EnemyCharacters.Length; i++)
                 {
@@ -46,13 +48,22 @@ public class FightController : MonoBehaviour
                         TakeAction(EnemyCharacters[i]);
                     }
                 }
+                for (int i = 0; i < TeamCharacters.Length; i++)
+                {
+                    if (TeamCharacters[i] == gameObject)
+                    {
+                        TakeAction(TeamCharacters[i]);
+                    }
+                }
             }
         }
     }
 
     public void SetupFight(Character[] teamCharacters, Character[] enemyCharacters)
     {
-        FightStarted.Invoke(new Encounter { CharactersInEncounter = enemyCharacters, EncounterSprite = AssetProvider.SpriteStore.placeholder});
+        Encounter enemy = new Encounter { CharactersInEncounter = enemyCharacters, EncounterSprite = AssetProvider.SpriteStore.placeholder };
+        Enemy = enemy; 
+        FightStarted?.Invoke(enemy);
 
         SetupTeam(teamCharacters);
         SetupEnemy(enemyCharacters);
@@ -95,7 +106,9 @@ public class FightController : MonoBehaviour
                         // Przeciwnik atakuje postac gracza
                         // Casts skill??
                         var dmg = (int)(character.Stats.Strength * 2.5) + rng.Next(1, 3);
-                        targetCharacter.OnHitPointsChanged(-dmg);
+
+                        //targetCharacter.OnHitPointsChanged(-dmg);
+                        OnlineManagerHandler.staticPlayerReference.SendSkillData(new SerializableSkill { HitRatio = dmg }, targetCharacter.Stats.Id);
                     }
                 }
                 else
@@ -104,7 +117,8 @@ public class FightController : MonoBehaviour
                     {
                         // Gracz atakuje postac przeciwnika
                         var dmg = (int)(character.Stats.Strength * 0.5) + rng.Next(1, 3);
-                        targetCharacter.OnHitPointsChanged(-dmg);
+                        //targetCharacter.OnHitPointsChanged(-dmg);
+                        OnlineManagerHandler.staticPlayerReference.SendSkillData(new SerializableSkill { HitRatio = dmg }, targetCharacter.Stats.Id);
                     }
                     else
                     {
@@ -115,19 +129,24 @@ public class FightController : MonoBehaviour
             }
 
             // tutaj cos jest broken
-
-            if (IsFightOver())
-            {
-                FightFinished.Invoke();
-                return;
-            }
-
-            CharacterDequeued.Invoke();
+            /*
+           
+            */
         }
         else
         {
             CreateRoundQueue();
         }
+    }
+    public void TickFight()
+    {
+        if (IsFightOver())
+        {
+            FightFinished.Invoke();
+            return;
+        }
+
+        CharacterDequeued.Invoke();
     }
 
     private void CreateRoundQueue()
@@ -147,7 +166,7 @@ public class FightController : MonoBehaviour
                 RoundQueue.Enqueue(character);
             }
 
-            CharactersEnqueued.Invoke(RoundQueue.ToArray());
+            CharactersEnqueued?.Invoke(RoundQueue.ToArray());
         }
     }
 
@@ -160,7 +179,7 @@ public class FightController : MonoBehaviour
         }
     }
 
-    private bool IsFightOver()
+    public bool IsFightOver()
     {
         return TeamCharacters.All(x => x.IsDead == true) || EnemyCharacters.All(x => x.IsDead == true);
     }
@@ -180,7 +199,6 @@ public class FightController : MonoBehaviour
             EnemySlots[i].SetActive(true);
         }
     }
-
     private void SetupTeam(Character[] teamCharacters)
     {
         TeamCharacters = teamCharacters;
@@ -190,5 +208,25 @@ public class FightController : MonoBehaviour
             TeamSlots[i].GetComponent<SpriteRenderer>().sprite = TeamCharacters[i].FightSprite;
             TeamSlots[i].SetActive(true);
         }
+    }
+    public void DoActionOnId(int id, int dmg)
+    {
+        foreach(Character ch in EnemyCharacters)
+        {
+            if(ch.Stats.Id == id)
+            {
+                ch.OnHitPointsChanged(-dmg);
+                return;
+            }
+        }
+        foreach (Character ch in TeamCharacters)
+        {
+            if (ch.Stats.Id == id)
+            {
+                ch.OnHitPointsChanged(-dmg);
+                return;
+            }
+        }
+
     }
 }

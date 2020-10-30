@@ -301,6 +301,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   player: {fileID: 0}
+  fightController: {fileID: 0}
+  enemyEncounter: {fileID: 0}
+  uIController: {fileID: 0}
+  isWaiting: 1
+  receivedEncounter: 0
+  sendAck: 0
   isHost: 1
 --- !u!4 &1701877552
 Transform:

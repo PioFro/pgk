@@ -81,7 +81,9 @@ public class PlayerUIController : MonoBehaviour
                 break;
             case "FightScene":
                 QueueAvatars.SetActive(true);
-
+                break;
+            case "Online":
+                QueueAvatars.SetActive(true);
                 break;
             default:
                 break;

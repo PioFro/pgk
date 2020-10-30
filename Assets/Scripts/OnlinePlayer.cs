@@ -16,6 +16,8 @@ public class OnlinePlayer : NetworkBehaviour
     [SyncVar]
     public int id;
 
+    public static event Action<bool> ReceivedAck;
+
     public static event Action<SerializableEncounter, SerializableEncounter> ReceivedEncounter;
 
     public static event Action<SerializableSkill, int> CastedSkill; //How to define target

@@ -19,4 +19,30 @@ public class SerializableEncounter
         }
     }
 
+    public int GetActualLenght()
+    {
+        int i = 0;
+        for(;i<encounter.Length;i++)
+        {
+            if (encounter[i] == null)
+                return i;
+        }
+        return encounter.Length;
+    }
+    public Encounter ToEncounter()
+    {
+        int i = 0;
+        Encounter returnEncounter = new Encounter();
+        returnEncounter.CharactersInEncounter = new Character[GetActualLenght()];
+        returnEncounter.EncounterSprite = AssetProvider.SpriteStore.GetSpriteById(EncounterSpriteId);
+        foreach(SerializableCharacter serializableCharacter in encounter)
+        {
+            if (serializableCharacter == null)
+                break;
+            returnEncounter.CharactersInEncounter[i] = serializableCharacter.ToCharacter();
+            i++;
+        }
+        return returnEncounter;
+    }
+
 }

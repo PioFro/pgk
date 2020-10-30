@@ -32,4 +32,17 @@ public class SerializableCharacterStats
         CurrentInitiative = stats.CurrentInitiative;
         Attributes = stats.Attributes;
     }
+
+    public CharacterStats ToCharacterStats()
+    {
+        CharacterStats returnStats = new CharacterStats();
+        returnStats.CharacterName = CharacterName;
+        returnStats.Id = Id;
+        returnStats.Level = Level;
+        returnStats.HitPoints = HitPoints;
+        returnStats.CurrentHitPoints = CurrentHitPoints;
+        returnStats.CurrentInitiative = CurrentInitiative;
+        returnStats.Attributes = Attributes;
+        return returnStats;
+    }
 }
